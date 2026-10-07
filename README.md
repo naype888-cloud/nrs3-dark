@@ -10,6 +10,17 @@ resolve it there, not because it is empty. Lean 4, Mathlib and the base reposito
 
 **[▶ Try it: move the axes of the cube; the three fronts against omegaPi](https://naype888-cloud.github.io/nrs3-dark/)**
 
+## Two saturations
+
+All white and all black are the same blindness. At `d = 2, 3` the uncertainty vector is
+lightlike and the contrast `tan θ_NRS(d) = τ / ‖⟪x, y⟫‖` is zero: only light, the image washes out.
+At the Szegő limit the contrast would be `√(C∞² − 1)`, the other saturation, which no dimension
+reaches. Every real image lives strictly between the two (`properTimeQuantum_mem_Ioo` in Physlib,
+`contrast_maxCurrentState` in [`nrs3-uncertainty-cone`](https://github.com/naype888-cloud/nrs3-uncertainty-cone)),
+and the contrast depends on the dimension alone (`properTimeQuantum_eq_of_N_eq`): the same in a
+microscope, a classroom and a telescope. The regulation of what light resolves against what it
+does not is `Ω_b` against `1 − Ω_b`.
+
 ## The number
 
 `omegaPi = (1 − 1/C∞) e^{−1/C∞} = 0.0495436788…`, a function of `π` alone through the Szegő limit

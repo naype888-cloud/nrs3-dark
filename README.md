@@ -8,6 +8,8 @@ what we see and measure, the baryon density `Ω_b`; what it does not resolve, `1
 interior of the volumetric quantum throughout the universe. It is dark because light does not
 resolve it there, not because it is empty. Lean 4, Mathlib and the base repository.
 
+**[▶ Try it: move the axes and the instrument precision against omegaPi](https://naype888-cloud.github.io/nrs3-dark/)**
+
 ## The number
 
 `omegaPi = (1 − 1/C∞) e^{−1/C∞} = 0.0495436788…`, a function of `π` alone through the Szegő limit
@@ -26,6 +28,22 @@ the quantum in `C∞`:
 | CMB · Planck 2018 | `ω_b = 0.02237 ± 0.00015`, `H₀ = 67.36 ± 0.54` (1σ) | `[0.0482, 0.0504]` | inside, `≈ 0.3σ` | `omegaB_planck`, `omegaPi_mem_planck` |
 | BBN · LUNA 2020 | `ω_b = 0.02233 ± 0.00036`, Planck `h` (1σ) | `[0.0477, 0.0508]` | inside | `omegaB_luna`, `omegaPi_mem_luna` |
 | BAO · DESI 2024 | `ω_b = 0.02218 ± 0.00055` (BBN), `H₀ = 68.52 ± 0.62` (2σ) | `[0.0433, 0.0514]` | inside at 2σ, `≈ 1.6σ` | `omegaB_desi`, `omegaPi_mem_desi` |
+
+## Current precision by front
+
+`omegaPi` is fixed by `π`; each front approaches it as far as its instrument allows. Central value
+`Ω_b = ω_b / h²`, error propagated from `ω_b` and `h`:
+
+| Front | `Ω_b` (centre) | `1σ` | `omegaPi − Ω_b` | Distance |
+|---|---|---|---|---|
+| CMB · Planck 2018 | `0.04930` | `± 0.00086` (1.7 %) | `+0.49 %` | `0.28σ` |
+| BBN · LUNA 2020, Planck `h` | `0.04921` | `± 0.00112` (2.3 %) | `+0.67 %` | `0.30σ` |
+| BAO · DESI 2024 + BBN | `0.04724` | `± 0.00145` (3.1 %) | `+4.87 %` | `1.59σ` |
+
+Planck and LUNA sit within a third of their own error. DESI's distance comes from its higher
+`H₀` (68.52 against 67.36): its `ω_b` is the BBN value, close to the others. As the next CMB
+experiments shrink the error of `ω_b`, the centres must close on `0.0495437`; if they stayed
+where they are, their distance in `σ` would grow. That is the test.
 
 ## Results
 

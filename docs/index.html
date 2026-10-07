@@ -96,7 +96,6 @@ td.name { font-family: var(--mono); font-size: .82rem; color: var(--accent); whi
     <div class="ctl-row"><label for="dx">dx</label><input id="dx" type="range" min="2" max="60" step="1" value="4"><span class="sval" id="dxv"></span></div>
     <div class="ctl-row"><label for="dy">dy</label><input id="dy" type="range" min="2" max="60" step="1" value="4"><span class="sval" id="dyv"></span></div>
     <div class="ctl-row"><label for="dz">dz</label><input id="dz" type="range" min="2" max="60" step="1" value="4"><span class="sval" id="dzv"></span></div>
-    <div class="ctl-row"><label for="prec">instrument precision</label><input id="prec" type="range" min="0" max="1.3" step="0.01" value="0"><span class="sval" id="precv"></span></div>
   </section>
 
   <section class="readouts" aria-live="polite">
@@ -108,14 +107,14 @@ td.name { font-family: var(--mono); font-size: .82rem; color: var(--accent); whi
   </section>
 
   <section class="plots">
-    <div class="plot"><div class="cap">Three fronts against omegaPi. Bars: 1σ at the chosen precision; centres fixed at today's values.</div><div class="chart" id="fronts"></div></div>
+    <div class="plot"><div class="cap">Three fronts against omegaPi. Bars: the 1σ error of each instrument.</div><div class="chart" id="fronts"></div></div>
     <div class="plot"><div class="cap">δ(d) per axis, its Szegő ceiling δ∞, and the axes of the cube.</div><div class="chart" id="delta"></div></div>
     <div class="plot wide"><div class="cap">The universe split by resolution: Ω_b resolved by light, 1 − Ω_b the interior of the volumetric quantum.</div><div class="chart" id="split" style="height:150px"></div></div>
   </section>
 
-  <p class="note">The centres stay where today's measurements put them. As the instrument sharpens, Planck and LUNA must
-    close on omegaPi; if their centres stayed put, their distance in σ would grow. DESI is about 1.6σ away because of
-    its higher H₀: its ω<sub>b</sub> is the BBN value, close to the others.</p>
+  <p class="note">omegaPi is fixed by the theorem: everything light resolves is Ω<sub>b</sub>, everything it does
+    not resolve is 1 − Ω<sub>b</sub>, and every observation records the same value. The bars are the error of each
+    instrument. DESI sits further out because of its higher H₀; its ω<sub>b</sub> is the BBN value, close to the others.</p>
 
   <section>
     <h2>Each value and its Lean statement</h2>
@@ -163,10 +162,9 @@ td.name { font-family: var(--mono); font-size: .82rem; color: var(--accent); whi
   }
   function draw() {
     const acc = css("--accent"), warm = css("--warm"), ok = css("--ok"), mut = css("--mut");
-    const dx = +$("dx").value, dy = +$("dy").value, dz = +$("dz").value, p = +$("prec").value;
-    const k = Math.pow(10, -p);
+    const dx = +$("dx").value, dy = +$("dy").value, dz = +$("dz").value;
+    const k = 1;
     $("dxv").textContent = dx; $("dyv").textContent = dy; $("dzv").textContent = dz;
-    $("precv").textContent = "σ × " + k.toFixed(k < 0.1 ? 3 : 2);
     const ds = [delta(dx), delta(dy), delta(dz)], V = ds[0] * ds[1] * ds[2];
     $("ro-d").textContent = ds.map(d => d.toFixed(5)).join(" · ");
     $("ro-v").textContent = V.toExponential(4);
@@ -200,7 +198,7 @@ td.name { font-family: var(--mono); font-size: .82rem; color: var(--accent); whi
         hovertemplate: "1 − Ω_b = %{x:.7f}<extra></extra>" }
     ], layout("fraction of the universe", "", { barmode: "stack", margin: { l: 20, r: 20, t: 6, b: 40 }, legend: { orientation: "h", y: -0.6, font: { size: 11, color: css("--fg") } } }), cfg);
   }
-  ["dx", "dy", "dz", "prec"].forEach(id => $(id).addEventListener("input", draw));
+  ["dx", "dy", "dz"].forEach(id => $(id).addEventListener("input", draw));
   window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", draw);
   draw();
 })();

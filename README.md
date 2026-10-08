@@ -10,16 +10,16 @@ resolve it there, not because it is empty. Lean 4, Mathlib and the base reposito
 
 **[▶ Try it: move the axes of the cube; the three fronts against omegaPi](https://naype888-cloud.github.io/nrs3-dark/)**
 
-## Two saturations
+## The regulated image
 
-All white and all black are the same blindness. At `d = 2, 3` the uncertainty vector is
-lightlike and the contrast `tan θ_NRS(d) = τ / ‖⟪x, y⟫‖` is zero: only light, the image washes out.
-At the Szegő limit the contrast would be `√(C∞² − 1)`, the other saturation, which no dimension
-reaches. Every real image lives strictly between the two (`properTimeQuantum_mem_Ioo` in Physlib,
-`contrast_maxCurrentState` in [`nrs3-uncertainty-cone`](https://github.com/naype888-cloud/nrs3-uncertainty-cone)),
-and the contrast depends on the dimension alone (`properTimeQuantum_eq_of_N_eq`): the same in a
-microscope, a classroom and a telescope. The regulation of what light resolves against what it
-does not is `Ω_b` against `1 − Ω_b`.
+Light resolves at most `Ω_b`: that is the sharpest image there is, the real one. Remove the
+darkness, `1 − Ω_b = 0`, and everything would be light: all white, nothing to see. Remove `Ω_b`
+and only the `1` is left, with nothing to illuminate it: all black. Both are suppositions; every
+real image is regulated in the proportion `Ω_b : 1 − Ω_b`, the same in a microscope, a classroom
+and a telescope. The proportion of each cell depends on its dimension alone
+(`properTimeQuantum_eq_of_N_eq` in Physlib): the contrast `tan θ_NRS(d)` is `0` at saturation
+(`d = 2, 3`), positive from `d = 4`, and below its Szegő limit, never reached
+(`contrast_maxCurrentState` in [`nrs3-uncertainty-cone`](https://github.com/naype888-cloud/nrs3-uncertainty-cone)).
 
 ## The number
 

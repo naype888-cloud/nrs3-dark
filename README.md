@@ -21,6 +21,24 @@ and a telescope. The proportion of each cell depends on its dimension alone
 (`d = 2, 3`), positive from `d = 4`, and below its Szegő limit, never reached
 (`contrast_maxCurrentState` in [`nrs3-uncertainty-cone`](https://github.com/naype888-cloud/nrs3-uncertainty-cone)).
 
+## Every field: what is resolved and what is dark add up to one
+
+For two observables of any field, in any state, the product of the uncertainties splits into what
+the pair resolves (correlation and bracket) and the defect it cannot resolve. Divided by the
+product, the two shares are the squared cosine and sine of the angle between the fluctuations:
+`lightShare + darkShare = 1`. The dark share is zero exactly on the edge of the cone, where light
+saturates; nothing else is left. At the speed limit `c` of the system the dark share is
+`1 − 1/C(d)²`: zero for `d = 2, 3`, positive from `d = 4`, a function of `d` alone.
+
+| Statement | Lean |
+|---|---|
+| the two shares add up to one, for every pair of every field | `DarkShare.lightShare_add_darkShare` |
+| both shares are nonnegative | `DarkShare.darkShare_nonneg`, `DarkShare.lightShare_nonneg` |
+| the dark share vanishes exactly on the edge of the cone | `DarkShare.darkShare_eq_zero_iff` |
+| at `c`: light share `1/C(d)²`, dark share `1 − 1/C(d)²` | `DarkShare.lightShare_maxCurrentState`, `DarkShare.darkShare_maxCurrentState` |
+| the dark share at `c` is zero exactly for `d = 2, 3` | `DarkShare.darkShare_maxCurrentState_eq_zero_iff` |
+| from four positions on, it is positive | `DarkShare.darkShare_maxCurrentState_pos` |
+
 ## The number
 
 `omegaPi = (1 − 1/C∞) e^{−1/C∞} = 0.0495436788…`, a function of `π` alone through the Szegő limit

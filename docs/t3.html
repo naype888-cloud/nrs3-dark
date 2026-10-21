@@ -102,6 +102,7 @@ td.name { font-family: var(--mono); font-size: .82rem; color: var(--accent); whi
     <div class="ro"><span class="k">y · light | dark</span><span class="v" id="ro-y"></span><span class="u" id="ro-yu"></span></div>
     <div class="ro"><span class="k">z · light | dark</span><span class="v" id="ro-z"></span><span class="u" id="ro-zu"></span></div>
     <div class="ro"><span class="k">det Σ / |det Ω| at c</span><span class="v" id="ro-det"></span><span class="u">C°(d<sub>x</sub>)² C°(d<sub>y</sub>)² C°(d<sub>z</sub>)²</span></div>
+    <div class="ro check"><span class="k">window at the ring limit, c = √2</span><span class="v" id="ro-win"></span><span class="u">(1 − 1/c) e^{−1/c} &gt; 0 because c &gt; 1: the limit does not saturate</span></div>
     <div class="ro"><span class="k">Ω<sub>b</sub> measured (Planck 2018)</span><span class="v" id="ro-ob"></span><span class="u">what light resolves, the datum</span></div>
     <div class="ro check"><span class="k">1 − Ω<sub>b</sub></span><span class="v" id="ro-dark"></span><span class="u">what light does not resolve</span></div>
   </section>
@@ -113,7 +114,7 @@ td.name { font-family: var(--mono); font-size: .82rem; color: var(--accent); whi
   </section>
 
   <p class="note">At the maximal current state, the c of the closed axis, three positions resolve 4/5 and keep 1/5 dark; the open axis with three
-    positions keeps 0. For larger rings the share is not monotone, it goes to 1/2 from both sides (RingSzego). The first two plots are
+    positions keeps 0. For larger rings the share is not monotone, it goes to 1/2 from both sides (RingSzego). What the window needs is not a value but c &gt; 1: at the ring limit c = √2 it is 0.1444, positive because the infinite limit does not saturate the Gaussian (angle 45°, not 0). The first two plots are
     computed live from the matrices of the ring; Ω<sub>b</sub> is the measured datum of each instrument and the spread between fronts is the error
     of each instrument.</p>
 
@@ -129,7 +130,8 @@ td.name { font-family: var(--mono); font-size: .82rem; color: var(--accent); whi
         <tr><td>Szegő limit of the ring: light and dark → 1/2</td><td class="name">RingSzego.tendsto_lightShare, RingSzego.tendsto_darkShare</td><td><span class="pill">proved</span></td></tr>
         <tr><td>angle → 45°, det Σ / |det Ω| → 2 per axis</td><td class="name">RingSzego.tendsto_angle, RingSzego.tendsto_det_ratio</td><td><span class="pill">proved</span></td></tr>
         <tr><td>det|NRS³| strict on T³ for every state with the three axes in the band</td><td class="name">TorusStrict.robertson_det_torus_lt</td><td><span class="pill">proved</span></td></tr>
-        <tr><td>the window (1 − 1/c) e^{−1/c} is positive for c &gt; 1; at the open C∞ it is omegaPi</td><td class="name">BaryonWindow.window_pos, BaryonWindow.window_coherenceConstantInf</td><td><span class="pill">proved</span></td></tr>
+        <tr><td>the window is 0 at c = 1 (saturation) and positive for c &gt; 1: it is positive exactly when the limit does not saturate</td><td class="name">BaryonWindow.window_one, BaryonWindow.window_pos</td><td><span class="pill">proved</span></td></tr>
+        <tr><td>the window (1 − 1/c) e^{−1/c} at the open C∞ is omegaPi</td><td class="name">BaryonWindow.window_coherenceConstantInf</td><td><span class="pill">proved</span></td></tr>
         <tr><td>omegaPi inside the Planck Ω_b box</td><td class="name">NRS3Dark.omegaPi_mem_planck</td><td><span class="pill">proved</span></td></tr>
       </tbody>
     </table></div>
@@ -205,6 +207,7 @@ td.name { font-family: var(--mono); font-size: .82rem; color: var(--accent); whi
     ["dx", "dy", "dz"].forEach((id, i) => { $(id + "v").textContent = ds[i]; });
     ["x", "y", "z"].forEach((a, i) => { $("ro-" + a).textContent = rs[i].light.toFixed(4) + " | " + rs[i].dark.toFixed(4); $("ro-" + a + "u").textContent = "d = " + ds[i] + " · C° = " + rs[i].C.toFixed(4); });
     $("ro-det").textContent = rs.reduce((p, r) => p * r.C * r.C, 1).toFixed(6);
+    const cRing = Math.SQRT2; $("ro-win").textContent = ((1 - 1 / cRing) * Math.exp(-1 / cRing)).toFixed(6);
     const P = fronts[0]; $("ro-ob").textContent = P.O.toFixed(5) + " ± " + P.sO.toFixed(5); $("ro-dark").textContent = (1 - P.O).toFixed(5);
 
     Plotly.react("shares", [

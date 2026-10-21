@@ -8,7 +8,7 @@ what we see and measure, the baryon density `Ω_b`; what it does not resolve, `1
 interior of the volumetric quantum throughout the universe. It is dark because light does not
 resolve it there, not because it is empty. Lean 4, Mathlib and the base repository.
 
-**[▶ Try it: move the axes of the cube; the three fronts against omegaPi](https://naype888-cloud.github.io/nrs3-dark/)**
+**[▶ Try it: move the axes of the cube; the three fronts against omegaPi](https://naype888-cloud.github.io/nrs3-dark/)** · **[▶ on T³: each closed axis keeps a dark share](https://naype888-cloud.github.io/nrs3-dark/t3.html)**
 
 ## The regulated image
 
